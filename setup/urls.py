@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html')),
     path('produtos/', include('produtos.urls', namespace= 'produtos')),
-    path('cliente/', include('cliente.urls', namespace= 'cliente')),
+    path('clientes/', include('clientes.urls', namespace= 'clientes')),
     path('fornecedores/', include('fornecedores.urls', namespace= 'fornecedores')),
     path('venda/', include('venda.urls', namespace= 'venda')),
     path('login/', include('login.urls', namespace= 'login')),
