@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Clientes(models.model):
+class Clientes(models.Model):
     cpf = models.CharField(primary_key=True,max_length=11, 
                            help_text='Cpf do cliente')
     nome = models.CharField(max_length=70, 
@@ -25,5 +25,8 @@ class Clientes(models.model):
                                 help_text='Nome do usuario')
     senha = models.CharField(max_length=256,
                                 help_text='Senha')
+    
+    def __str__(self):
+        return f'{self.nomeDoUsuario}'
 
 
