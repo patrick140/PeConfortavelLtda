@@ -1,4 +1,5 @@
 from django.db import models
+from fornecedores.models import Fornecedores
 
 # Create your models here.
 
@@ -17,6 +18,9 @@ class Produtos(models.Model):
                                 help_text='Cidade do cliente')
     imagem = models.CharField(max_length=25,
                                 help_text='Nome da imagem do produto')
+    fabricante_codigo = models.ForeignKey(Fornecedores, null=True, blank=True,
+                                      related_name='fornecedores',
+                                      on_delete=models.SET_NULL,)
     
     
     def __str__(self):

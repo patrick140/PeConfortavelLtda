@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from clientes.models import Clientes
 
 # Create your models here.
 
@@ -12,8 +13,10 @@ class Venda(models.Model):
                             help_text='data da venda')
     valor_venda = models.FloatField(help_text='Valor da venda')
     
-    cliente_cpf = models.CharField(max_length=11, 
-                                   unique=True)
+    cliente_cpf = models.ForeignKey(Clientes, null=True, blank=True,
+                                      related_name='cliente',
+                                      on_delete=models.SET_NULL,)
+    
     
     def __str__(self):
         return f'{self.numero} - {self.cliente_cpf}'
