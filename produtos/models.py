@@ -8,14 +8,12 @@ class Produtos(models.Model):
                            help_text='Codigo do produto')
     nome = models.CharField(max_length=70, 
                             help_text='Nome do produto')
-    precoDeCompra = models.FloatField(
+    preco_Compra = models.FloatField(
                                 help_text='Preço de compra do Produto')
-    precoDeVenda = models.CharField(
+    preco_Venda = models.CharField(
                                 help_text='Preço de venda do produto')
     cor = models.CharField(max_length=20, 
                            help_text='Cor do produto')
-    dataFabricacao = models.DateField(max_length=50,
-                                help_text='Cidade do cliente')
     imagem = models.CharField(max_length=25,
                                 help_text='Nome da imagem do produto')
     fabricante_codigo = models.ForeignKey(Fornecedores, null=True, blank=True,

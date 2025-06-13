@@ -7,7 +7,7 @@ from clientes.models import Clientes
 class Venda(models.Model):
     numero = models.AutoField(primary_key=True, 
                            help_text='Numero da venda')
-    data_venda = models.DateField(null=True,
+    data_venda = models.DateTimeField(null=True,
                                   blank=True,
                                   default=timezone.now(), 
                             help_text='data da venda')
