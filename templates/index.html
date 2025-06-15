@@ -1,5 +1,5 @@
 {% extends "base_template.html" %}
-
+{% load static %}
 
     {% block title %}
         <title>Pé Confortavel</title>
@@ -11,12 +11,12 @@
             <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
                 <div class="navbar-nav">
                     <a href="/" class="nav-link">Início</a>
-                    <a href="" class="nav-link">Clientes</a>
+                    <a href="{% url 'clientes:cadastrar' %}" class="nav-link">Clientes</a>
                     <a href="" class="nav-link">Contato</a>
-                    <a href="" class="nav-link">Fornecedores</a>
+                    <a href="{% url 'fornecedores:cadastrar' %}" class="nav-link">Fornecedores</a>
                     <a href="" class="nav-link">Login</a>
-                    <a href="" class="nav-link">Produtos</a>
-                    <a href="" class="nav-link">Venda</a>
+                    <a href="{% url 'produtos:cadastrar' %}" class="nav-link">Produtos</a>
+                    <a href="{% url 'venda:cadastrar' %}" class="nav-link">Venda</a>
                 </div>
             </div>
         </nav>
@@ -32,17 +32,83 @@
 
     
     
-    {% block corpo %}
-    <section class="hero">
+{% block corpo %}
+    <section class="hero container px-0">
             <h2>Bem-vindo à Pé Confortável Ltda.</h2>
             <p>Descubra nossa coleção exclusiva de calçados para toda a família. Conforto e qualidade em primeiro lugar!</p>
         </section>
         
-        <section>
+        
+    
+        <section class="showslide container px-0">
             <h3>Destaques</h3>
             <p>Confira nossas promoções especiais e novos lançamentos.</p>
-            <!-- Espaço reservado para produtos em destaque -->
+            
+            <div class="slideshow-container">
+                <!-- Slide 1 -->
+                <div class="slide active">
+                    <img src="{% static 'img/photo-1542291026-7eec264c27ff.jpg' %}" alt="Tênis Esportivo">
+                    <div class="sale-badge">-30%</div>
+                    <div class="slide-info">
+                        <h3>Tênis Esportivo Runner Pro</h3>
+                        <p>Conforto máximo para suas corridas</p>
+                        <div class="price">R$ 199,99 <span style="text-decoration: line-through; color: #bbb; font-size: 0.9em;">R$ 285,99</span></div>
+                    </div>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <img src="{% static 'img/photo-1525966222134-fcfa99b8ae77.jpg' %}" alt="Sapato Social">
+                    <div class="sale-badge">-25%</div>
+                    <div class="slide-info">
+                        <h3>Sapato Social Elegance</h3>
+                        <p>Estilo e sofisticação para ocasiões especiais</p>
+                        <div class="price">R$ 249,99 <span style="text-decoration: line-through; color: #bbb; font-size: 0.9em;">R$ 333,99</span></div>
+                    </div>
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <img src="{% static 'img/photo-1460353581641-37baddab0fa2.jpg' %}" alt="Bota Feminina">
+                    <div class="sale-badge">-20%</div>
+                    <div class="slide-info">
+                        <h3>Bota Feminina Winter</h3>
+                        <p>Proteção e estilo para dias frios</p>
+                        <div class="price">R$ 179,99 <span style="text-decoration: line-through; color: #bbb; font-size: 0.9em;">R$ 224,99</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slideshow-controls">
+                <button onclick="prevSlide()">Anterior</button>
+                <button onclick="nextSlide()">Próximo</button>
+            </div>
         </section>
-    {% endblock %}
+    
+    </main>
+    
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        // Auto-advance slides every 5 seconds
+        setInterval(nextSlide, 5000);
+    </script>
+{% endblock %}
 
    

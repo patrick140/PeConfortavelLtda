@@ -45,6 +45,19 @@
             background-color: #2980b9;
         }
         
+        .navbar {
+            font-size: 24px;
+
+            
+        }
+
+        .navbar img {
+            background-color: #d8e3e5;
+            width: 64px;
+            height: 64px;
+            
+        }
+        
         main {
             max-width: 1200px;
             margin: 30px auto;
@@ -54,7 +67,7 @@
         .hero {
             text-align: center;
             padding: 50px 20px;
-            background-color: #ecf0f1;
+            background-color: #d8e3e5;
             border-radius: 8px;
             margin-bottom: 30px;
         }
@@ -62,6 +75,29 @@
         .hero h2 {
             color: #2c3e50;
             margin-bottom: 20px;
+        }
+
+
+        .h3 {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #d8e3e5;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .showslide {
+            padding: 10px 0;
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #d8e3e5;
+            border-radius: 8px;
+            margin-bottom: 30px;
         }
         
         footer {
@@ -71,4 +107,6 @@
             padding: 20px 0;
             margin-top: 30px;
         }
+
+
    

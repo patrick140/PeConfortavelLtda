@@ -4,4 +4,7 @@ from . import views
 
 app_name = "clientes"
 
-urlpatterns = []
+urlpatterns = [
+    path('lista', views.listar, name='listar'),
+    path('cadastra', views.cadastrar, name='cadastrar'),
+]
