@@ -1,1 +1,144 @@
 {% extends "base_template.html" %}
+{% load static %}
+
+    {% block title %}
+        <title>Pé Confortavel</title>
+    {% endblock %}
+
+
+
+            {% block menu %}
+            <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
+                <div class="navbar-nav">
+                    <a href="/" class="nav-link">Início</a>
+                    <a href="{% url 'fornecedores:cadastro' %}" class="nav-link">Cadastro</a>
+                    <a href="{% url 'fornecedores:listar' %}" class="nav-link">Listar</a>
+                </div>
+            </div>
+        </nav>
+            {%  endblock %}
+
+            
+        {% block titulo_pagina %}
+        
+        
+        {% endblock %}
+
+    
+
+    
+    
+{% block corpo %}
+    <main class="container px-0 mx-auto my-font-family">
+
+    <div class="row">
+        <div class="col text-center m-0">
+            <h1  class="hero">Lista de fornecedores</h1>
+        </div>
+    </div>
+
+{% if fornecedores %}
+
+    <section class="hero">
+    <div class="table-responsive">
+
+        <!-- classes para tabela (Bootstrap) , tabela sem borda, conteudo alinhado ao centro, ... , width: auto -->
+        <table class="table
+                    table-borderless
+                    text-center
+                    my-table-hover
+                    my-table-image
+                    my-table-td-first-child
+                    my-table-border-bottom
+                    my-table-th
+                    w-100">
+
+            <!-- cabecalho -->
+            <thead>
+                <!-- linhas -->
+                <tr>
+                    <!-- colunas cabecalho -->
+                    <th>codigo</th>
+                    <th>Nome</th>
+                </tr>
+            </thead>
+
+            <!-- linhas -->
+            {% for fornecedores in fornecedores %}
+                <tr>
+                    <td> {{ fornecedores.codigo }} </td>
+                    <td> {{ fornecedores.nome }} </td>
+                    <td>
+                        <a href="{% url 'fornecedores:carregar_fornecedores' fornecedores.codigo %}" class="btn btn-mini"><i class="far fa-edit"></i></a> 
+                        <button type="button" class="btn" role="button" data-target="#modalExcluirFornecedores"
+                                data-toggle="modal"  
+                                data-nome="{{ fornecedores.nome }}" 
+                                data-url="{% url 'fornecedores:excluir_fornecedores' fornecedores.codigo %}">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        </div>
+    {% else %}
+        <div class="text-danger">
+            <p>Não há títulos cadastrados</p>
+        </div>
+    {% endif %}
+</section>
+
+
+</main>
+
+<div class="modal fade" id="modalExcluirFornecedores" role="dialog" aria-labelledby="Confirmação" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+        
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Confirmação</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <p id="mensagemExclusao"></p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnExcluir">Excluir</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript_complementar %}
+
+<!-- Prepara o modal com os dados da imagem do Titulo a ser excluido -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#modalExcluirFornecedores').on('show.bs.modal', function(event) {
+            var nome = $(event.relatedTarget).data('nome');
+            var urlExcluir = $(event.relatedTarget).data('url');
+            $("#mensagemExclusao").text("fornecedores [ " + nome + "  ]?");
+
+            $.fn.excluirTitulo = function() {
+                var url = $(event.relatedTarget).data('url');
+                location.replace(url);
+            }
+        });
+    
+        $("#btnExcluir").on('click', function() {
+            $.fn.excluirTitulo();
+            return false;
+        });            
+    });
+</script>
+
+{% endblock %}

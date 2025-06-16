@@ -1,0 +1,62 @@
+{% extends "base_template.html" %}
+
+
+    {% block title %}
+        <title>Pé Confortavel</title>
+    {% endblock %}
+
+
+
+            {% block menu %}
+            <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
+                <div class="navbar-nav">
+                    <a href="/" class="nav-link">Início</a>
+                    <a href="{% url 'fornecedores:cadastro' %}" class="nav-link">Cadastro</a>
+                    <a href="{% url 'fornecedores:listar' %}" class="nav-link">Listar</a>
+                </div>
+            </div>
+        </nav>
+            {%  endblock %}
+
+            
+{% block corpo %}
+        <!-- main -->
+<main class="container m-2 w-75 mx-auto my-font-family">
+
+    <div class="hero">
+        <div class="col text-center m-0">
+            <h2 class="mt-2 mb-5 my-h2">Atualização de Fornecedores</h2>
+        </div>
+    </div>
+
+    <!-- formulario HTML -->
+    <section class="hero">
+    <form name="FornecedoresAtualizarForm" action="{% url 'fornecedores:atualizar_fornecedores' %}" method="post" class="my-label-color-purple">
+        {% csrf_token %}
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="idTxtCodigo" class="form-label">codigo</label>
+                <input type="hidden" name="codigo" value="{{ fornecedores.codigo }}">  <!-- Name matches form field -->
+                <input class="form-control" type="text" id="idTxtCodigo" 
+                        value="{{ fornecedores.codigo }}" maxlength="11" readonly>
+            </div>
+        
+        <div class="row mb-3">
+        <div class="col-md-12">
+            <label for="idTxtNomeFornecedores" class="form-label">Nome do fornecedor</label>
+            <input class="form-control" type="text" id="idTxtNomeFornecedores" name="nome" 
+                   value="{{fornecedores.nome}}" maxlength="70" required>
+        </div>
+    
+
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <button type="reset" class="btn btn-outline-secondary me-2">Limpar</button>
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+        </div>
+    </div>
+</form>
+</section>
+</main>
+{% endblock %}

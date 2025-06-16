@@ -42,7 +42,7 @@ class ClientesAtualizaForm(forms.Form):
                             help_text='Nome do cliente')
     endereco = forms.CharField(max_length=100,
                                required=True,
-                                help_text='Endereço do Cliente')
+                                help_text='Endereço do cliente')
     telefone = forms.CharField(max_length=11,
                                required=True,
                                 help_text='Telefone do cliente')
