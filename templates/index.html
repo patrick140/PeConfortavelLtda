@@ -11,10 +11,10 @@
             <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
                 <div class="navbar-nav">
                     <a href="/" class="nav-link">Início</a>
-                    <a href="{% url 'clientes:cadastrar' %}" class="nav-link">Clientes</a>
-                    <a href="" class="nav-link">Contato</a>
+                    <a href="{% url 'clientes:cadastro' %}" class="nav-link">Clientes</a>
+                    <a href="{% url 'contato:contato' %}" class="nav-link">Contato</a>
                     <a href="{% url 'fornecedores:cadastrar' %}" class="nav-link">Fornecedores</a>
-                    <a href="" class="nav-link">Login</a>
+                    <a href="{% url 'login:login' %}" class="nav-link">Login</a>
                     <a href="{% url 'produtos:cadastrar' %}" class="nav-link">Produtos</a>
                     <a href="{% url 'venda:cadastrar' %}" class="nav-link">Venda</a>
                 </div>
@@ -40,7 +40,7 @@
         
         
     
-        <section class="showslide container px-0">
+        <section class="hero container px-0">
             <h3>Destaques</h3>
             <p>Confira nossas promoções especiais e novos lançamentos.</p>
             
@@ -48,7 +48,7 @@
                 <!-- Slide 1 -->
                 <div class="slide active">
                     <img src="{% static 'img/photo-1542291026-7eec264c27ff.jpg' %}" alt="Tênis Esportivo">
-                    <div class="sale-badge">-30%</div>
+                    <div class="sale-badge">INDISPONIVEL</div>
                     <div class="slide-info">
                         <h3>Tênis Esportivo Runner Pro</h3>
                         <p>Conforto máximo para suas corridas</p>
@@ -59,7 +59,7 @@
                 <!-- Slide 2 -->
                 <div class="slide">
                     <img src="{% static 'img/photo-1525966222134-fcfa99b8ae77.jpg' %}" alt="Sapato Social">
-                    <div class="sale-badge">-25%</div>
+                    <div class="sale-badge">INDISPONIVEL</div>
                     <div class="slide-info">
                         <h3>Sapato Social Elegance</h3>
                         <p>Estilo e sofisticação para ocasiões especiais</p>
@@ -70,7 +70,7 @@
                 <!-- Slide 3 -->
                 <div class="slide">
                     <img src="{% static 'img/photo-1460353581641-37baddab0fa2.jpg' %}" alt="Bota Feminina">
-                    <div class="sale-badge">-20%</div>
+                    <div class="sale-badge">INDISPONIVEL</div>
                     <div class="slide-info">
                         <h3>Bota Feminina Winter</h3>
                         <p>Proteção e estilo para dias frios</p>

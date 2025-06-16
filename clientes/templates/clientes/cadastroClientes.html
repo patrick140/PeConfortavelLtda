@@ -1,1 +1,132 @@
 {% extends "base_template.html" %}
+{% load static %}
+
+    {% block title %}
+        <title>Pé Confortavel</title>
+    {% endblock %}
+
+
+
+            {% block menu %}
+            <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
+                <div class="navbar-nav">
+                    <a href="/" class="nav-link">Início</a>
+                    <a href="{% url 'clientes:cadastro' %}" class="nav-link">Cadastro</a>
+                    <a href="{% url 'clientes:listar' %}" class="nav-link">Listar</a>
+                </div>
+            </div>
+        </nav>
+            {%  endblock %}
+
+            
+        {% block titulo_pagina %}
+        
+        
+        {% endblock %}
+
+        {% block corpo %}
+        <main class="container m-2 w-75 mx-auto my-font-family">
+
+    <div class="hero">
+        <div class="col text-center m-0">
+            <h1 class="mt-2 mb-5 my-h2">Cadastro de clientes</h1>
+        </div>
+    </div>
+
+    <!-- formulario HTML -->
+    <section class="hero">
+    <form name="frmCadastrar" action="{% url 'clientes:cadastrar' %}" method="post" class="my-label-color-purple">
+    {% csrf_token %}
+    
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <label for="idNomeClientes" class="form-label">Nome do cliente</label>
+            <input class="form-control" type="text" id="idNomeclientes" name="nome" 
+                   placeholder="Informe o nome do cliente" maxlength="70" required>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="idCpf" class="form-label">CPF</label>
+            <input class="form-control" type="text" id="idCpf" name="cpf" 
+                   placeholder="Informe o CPF" maxlength="11" required>
+        </div>
+        <div class="col-md-6">
+            <label for="idTelefone" class="form-label">Telefone</label>
+            <input class="form-control" type="text" id="idTelefone" name="telefone" 
+                   placeholder="Informe o telefone" maxlength="11" required>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <label for="idEndereco" class="form-label">Endereço</label>
+            <input class="form-control" type="text" id="idEndereco" name="endereco" 
+                   placeholder="Informe o endereço" maxlength="100" required>
+        </div>
+        <div class="col-md-4">
+            <label for="idCidade" class="form-label">Cidade</label>
+            <input class="form-control" type="text" id="idCidade" name="cidade" 
+                   placeholder="Informe a cidade" maxlength="50" required>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="idUf" class="form-label">UF</label>
+            <select class="form-select" id="idUf" name="uf" required>
+                <option value="0">Selecione...</option>
+                <option value="RJ">RJ</option>
+                <option value="SP">SP</option>
+                <option value="MG">MG</option>
+                <option value="ES">ES</option>
+                <option value="PR">PR</option>
+                <option value="BA">BA</option>
+                <option value="RS">RS</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="idContato" class="form-label">Forma de contato</label>
+            <select class="form-select" id="idContato" name="contato" required>
+                <option value="0">Selecione...</option>
+                <option value="C">Carta</option>
+                <option value="E">E-mail</option>
+                <option value="T">Telefone</option>
+                <option value="F">Fax</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="idGenero" class="form-label">Gênero</label>
+            <select class="form-select" id="idGenero" name="genero" required>
+                <option value="0">Selecione...</option>
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+                <option value="O">Outro</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="idEmail" class="form-label">E-mail</label>
+            <input class="form-control" type="email" id="idEmail" name="email" 
+                   placeholder="Informe o e-mail" maxlength="100" required>
+        </div>
+        <div class="col-md-6">
+            <label for="idSenha" class="form-label">Senha</label>
+            <input class="form-control" type="password" id="idSenha" name="senha" 
+                   placeholder="Crie uma senha" maxlength="256" required>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <button type="reset" class="btn btn-outline-secondary me-2">Limpar</button>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+    </div>
+</form>
+    </section>
+
+        {% endblock %}

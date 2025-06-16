@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 # Create your models here.
 
 class Clientes(models.Model):
@@ -25,6 +25,6 @@ class Clientes(models.Model):
                                 help_text='Senha')
     
     def __str__(self):
-        return f'{self.nomeDoUsuario}'
+        return f'{self.nome} - {self.nome}'
 
 

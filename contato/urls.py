@@ -4,4 +4,6 @@ from . import views
 
 app_name = "contato"
 
-urlpatterns = []
+urlpatterns = [
+    path('contato', views.contato, name='contato'),
+]
