@@ -19,35 +19,110 @@
             {%  endblock %}
 
             
-{% block corpo%}
+{% block corpo %}
         <!-- main -->
 <main class="container m-2 w-75 mx-auto my-font-family">
 
-    <div class="row">
+    <div class="hero">
         <div class="col text-center m-0">
             <h2 class="mt-2 mb-5 my-h2">Atualização de Clientes</h2>
         </div>
     </div>
 
     <!-- formulario HTML -->
-    <form name="ClientesAtualizarForm" action="{% url 'clientes:atualizar_clientes' %}" method="post" class="my-label-color-purple">
+    <section class="hero">
+    <form id="idFrmClientesAtualizarForm" name="frmClientesAtualizarForm" action="{% url 'clientes:atualizar_clientes' %}" method="POST" class="my-label-color-purple">
         {% csrf_token %}
-        <div class="form-group">
-            <label for="idCpf" class="col-form-label">Cpf</label>
-            <input class="form-control" type="text" id="idCpf" name="cpf" value="{{ clientes.cpf }}" readonly>  
-        </div>
-
-        <div class="form-group">
-            <label for="idNome">Nome</label>
-            <input class="form-control" type="text" id="idNome" name="nome" value="{{ clientes.nome }}" maxlength="70" required> 
-        </div>
         
-        <div class="form-group my-4 text-center">
-            <input type="reset" value="Limpar" class="btn btn-primary btn-md">
-            <input type="submit" value="Atualizar" class="btn btn-primary btn-md">
+        <div class="row mb-3">
+        <div class="col-md-12">
+            <label for="idTxtNomeclientes" class="form-label">Nome do cliente</label>
+            <input class="form-control" type="text" id="idTxtNomeclientes" name="nome" 
+                   value="{{clientes.nome}}" maxlength="70" required>
         </div>
+    </div>
 
-    </form>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="idTxtCpf" class="form-label">CPF</label>
+            <input class="form-control" type="text" id="idTxtCpf" name="Cpf" 
+                   value="{{clientes.cpf}}" maxlength="11" readonly>
+        </div>
+        <div class="col-md-6">
+            <label for="idTxtTelefone" class="form-label">Telefone</label>
+            <input class="form-control" type="text" id="idTxtTelefone" name="telefone" 
+                   value="{{clientes.telefone}}" maxlength="11" required>
+        </div>
+    </div>
 
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <label for="idTxtEndereco" class="form-label">Endereço</label>
+            <input class="form-control" type="text" id="idTxtEndereco" name="endereco" 
+                   value="{{clientes.endereco}}" maxlength="100" required>
+        </div>
+        <div class="col-md-4">
+            <label for="idTxtCidade" class="form-label">Cidade</label>
+            <input class="form-control" type="text" id="idTxtCidade" name="cidade" 
+                   value="{{clientes.cidade}}" maxlength="50" required>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="idBSelUf" class="form-label">UF</label>
+            <select class="form-select" id="idBSelUf" name="uf" required>
+                <option value="0">Selecione...</option>
+                <option value="RJ">RJ</option>
+                <option value="SP">SP</option>
+                <option value="MG">MG</option>
+                <option value="ES">ES</option>
+                <option value="PR">PR</option>
+                <option value="BA">BA</option>
+                <option value="RS">RS</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="idBSelContato" class="form-label">Forma de contato</label>
+            <select class="form-select" id="idBSelContato" name="contato" required>
+                <option value="0">Selecione...</option>
+                <option value="C">Carta</option>
+                <option value="E">E-mail</option>
+                <option value="T">Telefone</option>
+                <option value="F">Fax</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="idBSelGenero" class="form-label">Gênero</label>
+            <select class="form-select" id="idBSelGenero" name="genero" required>
+                <option value="0">Selecione...</option>
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+                <option value="O">Outro</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="idTxtEmail" class="form-label">E-mail</label>
+            <input class="form-control" type="email" id="idTxtEmail" name="email" 
+                   value="{{clientes.email}}" maxlength="100" required>
+        </div>
+        <div class="col-md-6">
+            <label for="idTxtSenha" class="form-label">Senha</label>
+            <input class="form-control" type="password" id="idTxtSenha" name="senha" 
+                   placeholder="Crie uma senha" maxlength="256" required>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <button type="reset" class="btn btn-outline-secondary me-2">Limpar</button>
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+        </div>
+    </div>
+</form>
+</section>
 </main>
 {% endblock %}

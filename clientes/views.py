@@ -58,6 +58,14 @@ def atualizar(request):
 
             clientes = Clientes.objects.get(pk=cpf)
             clientes.nome = dados_clientes['nome']
+            clientes.telefone = dados_clientes['telefone']
+            clientes.endereco = dados_clientes['endereco']
+            clientes.cidade = dados_clientes['cidade']
+            clientes.uf = dados_clientes['uf']
+            clientes.contato = dados_clientes['contato']
+            clientes.genero = dados_clientes['genero']
+            clientes.email = dados_clientes['email']
+            clientes.senha = dados_clientes['senha']
 
             clientes.save()
 
