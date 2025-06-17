@@ -20,3 +20,18 @@ class Venda(models.Model):
     
     def __str__(self):
         return f'{self.numero} - {self.cliente_cpf}'
+    
+class item_venda(models.Model):
+    numero = models.AutoField(primary_key=True, 
+                           help_text='Numero da venda')
+    venda_numero = models.ForeignKey(Venda, null=True, blank=True,
+                                     related_name='venda',
+                                     on_delete=models.SET_NULL,)
+    produto_codigo = models.ForeignKey(Produto, null=True, blank=True,
+                                     related_name='produto',
+                                     on_delete=models.SET_NULL,)
+    quantidade = models.AutoField(help_text='quantidade do item')
+
+    preco_venda = models.ForeignKey(Produto, null=True, blank=True,
+                                     related_name='produto',
+                                     on_delete=models.SET_NULL,)
