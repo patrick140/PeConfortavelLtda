@@ -24,13 +24,13 @@ def cadastrar(request):
         dados_produtos = form.cleaned_data
         produtos = Produtos(
             nome = dados_produtos['nome'],
-            preco_Compra = dados_produtos['precoCompra'],
-            preco_Venda = dados_produtos['precoVenda'],
+            precoCompra = dados_produtos['precoCompra'],
+            precoVenda = dados_produtos['precoVenda'],
             cor = dados_produtos['cor'],
             imagem = dados_produtos['imagem'],
-            fornecedores_codigo = dados_produtos['fornecedoresCodigo'],
-    )
-    produtos.save()
+            fornecedoresCodigo = dados_produtos['fornecedoresCodigo'],
+        )
+        produtos.save()
     return render(request, 'produtos/cadastroProdutos.html')
 
 def excluir(request, codigo):
@@ -58,11 +58,11 @@ def atualizar(request):
 
             produtos = Produtos.objects.get(pk=codigo)
             produtos.nome = dados_produtos['nome']
-            produtos.preco_Compra = dados_produtos['preco_Compra']
-            produtos.preco_Venda = dados_produtos['preco_Venda']
+            produtos.precoCompra = dados_produtos['precoCompra']
+            produtos.precoVenda = dados_produtos['precoVenda']
             produtos.cor = dados_produtos['cor']
             produtos.imagem = dados_produtos['imagem']
-            produtos.fornecedores_codigo = dados_produtos['fornecedores_codigo']
+            produtos.fornecedoresCodigo = dados_produtos['fornecedoresCodigo']
 
             produtos.save()
 

@@ -35,7 +35,7 @@
 
     <!-- formulario HTML -->
     <section class="hero">
-    <form name="frmProdutos" action="{% url 'produtos:cadastrar' %}" method="post" class="my-label-color-purple">
+    <form name="frmCadastrar" action="{% url 'produtos:cadastrar' %}" method="post" class="my-label-color-purple">
     {% csrf_token %}
     
     <div class="row mb-3">
