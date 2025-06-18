@@ -1,5 +1,5 @@
 {% extends "base_template.html" %}
-{% load static %}
+
 
     {% block title %}
         <title>Pé Confortavel</title>
@@ -19,47 +19,49 @@
             {%  endblock %}
 
             
-        {% block titulo_pagina %}
-        
-        
-        {% endblock %}
-
-        {% block corpo %}
-        <main class="container m-2 w-75 mx-auto my-font-family">
+{% block corpo %}
+        <!-- main -->
+<main class="container m-2 w-75 mx-auto my-font-family">
 
     <div class="hero">
         <div class="col text-center m-0">
-            <h1 class="mt-2 mb-5 my-h2">Cadastro de produtos</h1>
+            <h2 class="mt-2 mb-5 my-h2">Atualização de produtos</h2>
         </div>
     </div>
 
     <!-- formulario HTML -->
     <section class="hero">
-    <form name="frmProdutos" action="{% url 'produtos:cadastrar' %}" method="post" class="my-label-color-purple">
-    {% csrf_token %}
-    
-    <div class="row mb-3">
+    <form name="produtosAtualizarForm" action="{% url 'produtos:atualizar_produtos' %}" method="post" class="my-label-color-purple">
+        {% csrf_token %}
+        
+        <div class="row mb-3">
         <div class="col-md-12">
-            <label for="idNomeProdutos" class="form-label">Nome do produto</label>
-            <input class="form-control" type="text" id="idNomeProdutos" name="nome" 
-                   placeholder="Informe o nome do produto" maxlength="70" required>
+            <label for="idTxtNomeProdutos" class="form-label">Nome do produto</label>
+            <input class="form-control" type="text" id="idTxtNomeProdutos" name="nome" 
+                   value="{{produtos.nome}}" maxlength="70" required>
         </div>
     </div>
 
+    <div class="row mb-3">
         <div class="col-md-6">
-            <label for="idPrecoCompra" class="form-label">Preço de compra</label>
-            <input class="form-control" type="number" step="0.01" min="0" id="idPrecoCompra" name="precoCompra" 
-                   placeholder="Informe o preço de compra" required>
+            <label for="idTxtCodigo" class="form-label">codigo</label>
+            <input type="hidden" name="codigo" value="{{ produtos.codigo }}">  <!-- Name matches form field -->
+            <input class="form-control" type="number" id="idTxtCodigo" 
+                    value="{{ produtos.codigo }}" readonly>
+        </div>
+        <div class="col-md-6">
+            <label for="idTxtPrecoCompra" class="form-label">Preço de compra</label>
+            <input class="form-control" type="number" step="0.01" min="0" id="idTxtPrecoCompra" name="preco_Compra" 
+                   value="{{produtos.preco_Compra}}" required>
         </div>
     </div>
 
     <div class="row mb-3">
         <div class="col-md-8">
-            <label for="idPrecoVenda" class="form-label">Preço de venda</label>
-            <input class="form-control" type="number" step="0.01" min="0" id="idPrecoVenda" name="precoVenda" 
-                   placeholder="Informe o preço de venda" required>
+            <label for="idTxtPrecoVenda" class="form-label">Preço de venda</label>
+            <input class="form-control" type="number" step="0.01" min="0" id="idTxtPrecoVenda" name="preco_Venda" 
+                   value="{{produtos.preco_Venda}}" required>
         </div>
-    </div>
 
     <div class="row mb-3">
         <div class="col-md-4">
@@ -77,10 +79,10 @@
         </div>
         <div class="col-md-4">
             <label for="idFornecedor" class="form-label">Informe o fornecedor</label>
-            <select class="form-select" id="idFornecedor" name="fornecedoresCodigo">
+            <select class="form-select" id="idFornecedor" name="fornecedores_codigo" required>
                 <option value="0">Selecione...</option>
-                {% for fornecedores in fornecedores %}
-                    <option value="{{ fornecedores.codigo }}">{{ fornecedores.nome }}</option>
+                {% for produtos in produtos %}
+                <option value="{{ produtos.fornecedores_codigo }}">{{ produtos.fornecedores_codigo.nome }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -95,17 +97,17 @@
         <div class="col-md-6">
             <label for="idImagem" class="form-label">Nome da imagem do produto</label>
             <input class="form-control" type="text" id="idImagem" name="imagem" 
-                   placeholder="Informe o nome da imagem do produto" maxlength="25" required>
+                   value="{{produtos.imagem}}" maxlength="25" required>
         </div>
     </div>
 
     <div class="row mt-4">
         <div class="col-12 text-center">
             <button type="reset" class="btn btn-outline-secondary me-2">Limpar</button>
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="submit" class="btn btn-primary">Atualizar</button>
         </div>
     </div>
 </form>
-    </section>
-
-        {% endblock %}
+</section>
+</main>
+{% endblock %}
