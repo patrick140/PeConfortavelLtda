@@ -41,8 +41,8 @@
             <!-- Product Name (Full Width) -->
             <div class="row mb-4">
                 <div class="col-12">
-                    <label for="idNomeProdutos" class="form-label">Nome do produto</label>
-                    <input class="form-control form-control-lg" type="text" id="idNomeProdutos" name="nome" 
+                    <label for="idTxtNomeProdutos" class="form-label">Nome do produto</label>
+                    <input class="form-control form-control-lg" type="text" id="idTxtNomeProdutos" name="nome" 
                            placeholder="Digite o nome completo do produto" maxlength="70" required>
                 </div>
             </div>
@@ -73,7 +73,7 @@
             <div class="row mb-4">
                 <div class="col-md-4 mb-3 mb-md-0">
                     <label for="idCor" class="form-label">Cor principal</label>
-                    <select class="form-select" id="idCor" name="cor" required>
+                    <select class="form-select" id="idBSelCor" name="cor" required>
                         <option value="" selected disabled>Selecione a cor</option>
                         <option value="azul">Azul</option>
                         <option value="vermelho">Vermelho</option>
@@ -86,7 +86,7 @@
                 </div>
                 <div class="col-md-8">
                     <label for="idFornecedor" class="form-label">Fornecedor</label>
-                    <select class="form-select" id="idFornecedor" name="fornecedoresCodigo" required>
+                    <select class="form-select" id="idBSelFornecedor" name="fornecedoresCodigo" required>
                         <option value="" selected disabled>Selecione o fornecedor</option>
                         {% for fornecedores in fornecedores %}
                             <option value="{{ fornecedores.codigo }}">{{ fornecedores.nome }}</option>
@@ -104,10 +104,10 @@
                     <div class="form-text">Quando o produto foi fabricado</div>
                 </div>
                 <div class="col-md-6">
-                    <label for="idImagem" class="form-label">Imagem do produto</label>
+                    <label for="idTxtImagem" class="form-label">Imagem do produto</label>
                     <div class="input-group">
                         <span class="input-group-text">img/</span>
-                        <input class="form-control" type="text" id="idImagem" name="imagem" 
+                        <input class="form-control" type="text" id="idTxtImagem" name="imagem" 
                                placeholder="nome-da-imagem" maxlength="25" required>
                         <span class="input-group-text">.jpg</span>
                     </div>

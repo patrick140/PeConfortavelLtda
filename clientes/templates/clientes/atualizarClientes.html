@@ -31,7 +31,7 @@
 
     <!-- formulario HTML -->
     <section class="hero">
-    <form name="ClientesAtualizarForm" action="{% url 'clientes:atualizar_clientes' %}" method="post" class="my-label-color-purple">
+    <form name="frmClientesAtualizarForm" action="{% url 'clientes:atualizar_clientes' %}" method="post" class="my-label-color-purple">
         {% csrf_token %}
         
         <div class="row mb-3">

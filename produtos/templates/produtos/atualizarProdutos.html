@@ -66,7 +66,7 @@
     <div class="row mb-3">
         <div class="col-md-4">
             <label for="idCor" class="form-label">Cor</label>
-            <select class="form-select" id="idCor" name="cor" required>
+            <select class="form-select" id="idBSelCor" name="cor" required>
                 <option value="0">Selecione...</option>
                 <option value="azul">Azul</option>
                 <option value="vermelho">Vermelho</option>
@@ -79,7 +79,7 @@
         </div>
         <div class="col-md-4">
             <label for="idFornecedor" class="form-label">Informe o fornecedor</label>
-            <select class="form-select" id="idFornecedor" name="fornecedores_codigo" required>
+            <select class="form-select" id="idBSelFornecedor" name="fornecedores_codigo" required>
                 <option value="0">Selecione...</option>
                 {% for fornecedores in fornecedores %}
                     <option value="{{ fornecedores.codigo }}">{{ fornecedores.nome }}</option>
@@ -95,8 +95,8 @@
                    placeholder="Informe a data de fabricação" maxlength="25" required>
         </div>
         <div class="col-md-6">
-            <label for="idImagem" class="form-label">Nome da imagem do produto</label>
-            <input class="form-control" type="text" id="idImagem" name="imagem" 
+            <label for="idTxtImagem" class="form-label">Nome da imagem do produto</label>
+            <input class="form-control" type="text" id="idTxtImagem" name="imagem" 
                    value="{{produtos.imagem}}" maxlength="25" required>
         </div>
     </div>

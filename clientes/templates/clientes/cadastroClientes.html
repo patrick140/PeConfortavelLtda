@@ -50,8 +50,8 @@
             <!-- Name Field (Full Width) -->
             <div class="row mb-4">
                 <div class="col-12">
-                    <label for="idNomeClientes" class="form-label">Nome do cliente</label>
-                    <input class="form-control form-control-lg" type="text" id="idNomeclientes" name="nome" 
+                    <label for="idTxtNomeclientes" class="form-label">Nome do cliente</label>
+                    <input class="form-control form-control-lg" type="text" id="idTxtNomeclientes" name="nome" 
                            placeholder="Informe o nome completo do cliente" minlength="10" maxlength="25" required>
                 </div>
             </div>
@@ -59,16 +59,16 @@
             <!-- CPF and Phone (Equal Columns) -->
             <div class="row mb-4">
                 <div class="col-md-6 mb-3 mb-md-0">
-                    <label for="idCpf" class="form-label">CPF</label>
-                    <input class="form-control" type="text" id="idCpf" name="cpf" 
+                    <label for="idTxtCpf" class="form-label">CPF</label>
+                    <input class="form-control" type="text" id="idTxtCpf" name="cpf" 
                         placeholder="000.000.000-00" maxlength="14" required
                         pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" 
                         title="Formato: 000.000.000-00">
                     <div class="form-text">Informe o CPF com pontos e hífen</div>
                 </div>
                 <div class="col-md-6">
-                    <label for="idTelefone" class="form-label">Telefone</label>
-                    <input class="form-control" type="text" id="idTelefone" name="telefone" 
+                    <label for="idTxtTelefone" class="form-label">Telefone</label>
+                    <input class="form-control" type="text" id="idTxtTelefone" name="telefone" 
                            placeholder="(00) 00000-0000" maxlength="11" required>
                 </div>
             </div>
@@ -76,13 +76,13 @@
             <!-- Address and City (3/4 - 1/4 Ratio) -->
             <div class="row mb-4">
                 <div class="col-md-8 mb-3 mb-md-0">
-                    <label for="idEndereco" class="form-label">Endereço</label>
-                    <input class="form-control" type="text" id="idEndereco" name="endereco" 
+                    <label for="idTxtEndereco" class="form-label">Endereço</label>
+                    <input class="form-control" type="text" id="idTxtEndereco" name="endereco" 
                            placeholder="Rua, número, complemento" maxlength="100" required>
                 </div>
                 <div class="col-md-4">
-                    <label for="idCidade" class="form-label">Cidade</label>
-                    <input class="form-control" type="text" id="idCidade" name="cidade" 
+                    <label for="idTxtCidade" class="form-label">Cidade</label>
+                    <input class="form-control" type="text" id="idTxtCidade" name="cidade" 
                            placeholder="Sua cidade" maxlength="50" required>
                 </div>
             </div>
@@ -90,8 +90,8 @@
             <!-- Triple Select Fields (Equal Columns) -->
             <div class="row mb-4">
                 <div class="col-md-4 mb-3 mb-md-0">
-                    <label for="idUf" class="form-label">Estado (UF)</label>
-                    <select class="form-select" id="idUf" name="uf" required>
+                    <label for="idBSelUf" class="form-label">Estado (UF)</label>
+                    <select class="form-select" id="idBSelUf" name="uf" required>
                         <option value="" selected disabled>Selecione seu estado</option>
                         <option value="RJ">Rio de Janeiro</option>
                         <option value="SP">São Paulo</option>
@@ -103,8 +103,8 @@
                     </select>
                 </div>
                 <div class="col-md-4 mb-3 mb-md-0">
-                    <label for="idContato" class="form-label">Preferência de contato</label>
-                    <select class="form-select" id="idContato" name="contato" required>
+                    <label for="idBSelContato" class="form-label">Preferência de contato</label>
+                    <select class="form-select" id="idBSelContato" name="contato" required>
                         <option value="" selected disabled>Como prefere ser contatado?</option>
                         <option value="C">Carta</option>
                         <option value="E">E-mail</option>
@@ -113,8 +113,8 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <label for="idGenero" class="form-label">Gênero</label>
-                    <select class="form-select" id="idGenero" name="genero" required>
+                    <label for="idBSelGenero" class="form-label">Gênero</label>
+                    <select class="form-select" id="idBSelGenero" name="genero" required>
                         <option value="" selected disabled>Identificação de gênero</option>
                         <option value="M">Masculino</option>
                         <option value="F">Feminino</option>
@@ -162,7 +162,7 @@
         {% block javascript_complementar %}
         <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const cpfInput = document.getElementById('idCpf');
+    const cpfInput = document.getElementById('idTxtCpf');
     const form = document.forms['frmCadastrar'];
     
     // CPF format mask with 14-character limit

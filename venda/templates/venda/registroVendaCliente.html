@@ -42,7 +42,7 @@
     <div class="row mb-4">
         <div class="col-md-6">
             <label for="idClienteCpf" class="form-label">Cliente</label>
-            <select class="form-select" id="idClienteCpf" name="clienteCpf" required>
+            <select class="form-select" id="idBSelClienteCpf" name="clienteCpf" required>
                 <option value="" selected disabled>Selecione o cliente</option>
                 {% for cliente in clientes %}
                     <option value="{{ cliente.cpf }}">{{ cliente.nome }} ({{ cliente.cpf }})</option>
@@ -59,7 +59,7 @@
     <div class="row mb-4">
         <div class="col-md-6">
             <label for="idProdutoCodigo" class="form-label">Produto</label>
-            <select class="form-select" id="idProdutoCodigo" name="produtoCodigo" required>
+            <select class="form-select" id="idBSelProdutoCodigo" name="produtoCodigo" required>
                 <option value="" selected disabled>Selecione o produto</option>
                 {% for produto in produtos %}
                     <option value="{{ produto.codigo }}" data-preco="{{ produto.precoVenda }}">
