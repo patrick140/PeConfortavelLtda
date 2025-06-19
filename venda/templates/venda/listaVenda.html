@@ -1,1 +1,154 @@
 {% extends "base_template.html" %}
+{% load static %}
+
+    {% block title %}
+        <title>Pé Confortavel</title>
+    {% endblock %}
+
+
+
+            {% block menu %}
+            <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
+                <div class="navbar-nav">
+                    <a href="/" class="nav-link">Início</a>
+                    <a href="{% url 'produtos:cadastro' %}" class="nav-link">Cadastro</a>
+                    <a href="{% url 'produtos:listar' %}" class="nav-link">Listar</a>
+                </div>
+            </div>
+        </nav>
+            {%  endblock %}
+
+            
+        {% block titulo_pagina %}
+        
+        
+        {% endblock %}
+
+    
+
+    
+    
+{% block corpo %}
+    <main class="container px-0 mx-auto my-font-family">
+
+    <div class="row">
+        <div class="col text-center m-0">
+            <h1  class="hero">Lista de produtos</h1>
+        </div>
+    </div>
+
+{% if produtos %}
+
+    <section class="hero">
+    <div class="table-responsive">
+
+        <!-- classes para tabela (Bootstrap) , tabela sem borda, conteudo alinhado ao centro, ... , width: auto -->
+        <table class="table
+                    table-borderless
+                    text-center
+                    my-table-hover
+                    my-table-image
+                    my-table-td-first-child
+                    my-table-border-bottom
+                    my-table-th
+                    w-100">
+
+            <!-- cabecalho -->
+            <thead>
+                <!-- linhas -->
+                <tr>
+                    <!-- colunas cabecalho -->
+                    <th>Codigo</th>
+                    <th>Nome</th>
+                    <th>Preço de compra</th>
+                    <th>Preço de venda</th>
+                    <th>Cor</th>
+                    <th>Imagem</th>
+                    <th>Fornecedor</th>
+                </tr>
+            </thead>
+
+            <!-- linhas -->
+            {% for produtos in produtos %}
+                <tr>
+                    <td> {{ produtos.codigo }} </td>
+                    <td> {{ produtos.nome }} </td>
+                    <td> {{ produtos.precoCompra }} </td>
+                    <td> {{ produtos.precoVenda }} </td>
+                    <td> {{ produtos.cor }} </td>
+                    <td> {{ produtos.imagem }} </td>
+                    <td> {{ produtos.fornecedoresCodigo.nome }} </td>
+                    <td>
+                        <a href="{% url 'produtos:carregar_produtos' produtos.codigo %}" class="btn btn-mini"><i class="far fa-edit"></i></a> 
+                        <button type="button" class="btn" role="button" data-target="#modalExcluirProdutos"
+                                data-toggle="modal"  
+                                data-nome="{{ produtos.nome }}" 
+                                data-url="{% url 'produtos:excluir_produtos' produtos.codigo %}">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        </div>
+    {% else %}
+        <div class="text-danger">
+            <p>Não há produtos cadastrados</p>
+        </div>
+    {% endif %}
+</section>
+
+
+</main>
+
+<div class="modal fade" id="modalExcluirprodutos" role="dialog" aria-labelledby="Confirmação" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+        
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Confirmação</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <p id="mensagemExclusao"></p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnExcluir">Excluir</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript_complementar %}
+
+<!-- Prepara o modal com os dados da imagem do Titulo a ser excluido -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#modalExcluirProdutos').on('show.bs.modal', function(event) {
+            var nome = $(event.relatedTarget).data('nome');
+            var urlExcluir = $(event.relatedTarget).data('url');
+            $("#mensagemExclusao").text("produtos [ " + nome + "  ]?");
+
+            $.fn.excluirTitulo = function() {
+                var url = $(event.relatedTarget).data('url');
+                location.replace(url);
+            }
+        });
+    
+        $("#btnExcluir").on('click', function() {
+            $.fn.excluirTitulo();
+            return false;
+        });            
+    });
+</script>
+
+{% endblock %}

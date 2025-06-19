@@ -42,8 +42,10 @@ def excluir(request, codigo):
 def carregar_produtos(request, codigo):
     # obter titulo a atualizar baseado no codigo informado
     produtos = Produtos.objects.get(pk=codigo)
+    fornecedores = Fornecedores.objects.all()
     contexto = {
         'produtos': produtos,
+        'fornecedores': fornecedores,
     }
     return render(request, 'produtos/atualizarProdutos.html', context=contexto)
 

@@ -1,1 +1,105 @@
 {% extends "base_template.html" %}
+{% load static %}
+
+    {% block title %}
+        <title>Pé Confortavel</title>
+    {% endblock %}
+
+
+
+            {% block menu %}
+            <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
+                <div class="navbar-nav">
+                    <a href="/" class="nav-link">Início</a>
+                </div>
+            </div>
+        </nav>
+            {%  endblock %}
+
+            
+        {% block titulo_pagina %}
+        
+        
+        {% endblock %}
+
+        {% block corpo %}
+        <main class="container m-2 w-75 mx-auto my-font-family">
+
+    <div class="hero">
+        <div class="col text-center m-0">
+            <h1 class="mt-2 mb-5 my-h2">Contato</h1>
+        </div>
+    </div>
+
+    <section class="hero">
+        <form name="frmContato" action="" method="post" class="my-label-color-purple">
+            {% csrf_token %}
+            
+            <!-- Full Name -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <label for="idNomeCompleto" class="form-label">Nome completo</label>
+                    <input class="form-control form-control-lg" type="text" id="idNomeCompleto" name="nome_completo" 
+                           placeholder="Digite seu nome completo" maxlength="100" required>
+                </div>
+            </div>
+        
+            <!-- Contact Info (Email and Phone) -->
+            <div class="row mb-4">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="idEmail" class="form-label">E-mail</label>
+                    <input class="form-control" type="email" id="idEmail" name="email" 
+                           placeholder="seu@email.com" maxlength="100" required>
+                    <div class="form-text">Nunca compartilharemos seu e-mail</div>
+                </div>
+                <div class="col-md-6">
+                    <label for="idTelefone" class="form-label">Telefone</label>
+                    <input class="form-control" type="tel" id="idTelefone" name="telefone" 
+                           placeholder="(00) 00000-0000" maxlength="15" required>
+                    <div class="form-text">Com DDD e WhatsApp se possível</div>
+                </div>
+            </div>
+        
+            <!-- Best Time to Contact -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label for="idMelhorHorario" class="form-label">Melhor horário para contato</label>
+                    <select class="form-select" id="idMelhorHorario" name="melhor_horario" required>
+                        <option value="" selected disabled>Selecione um horário</option>
+                        <option value="Manhã">Manhã (8h às 12h)</option>
+                        <option value="Tarde">Tarde (13h às 18h)</option>
+                        <option value="Noite">Noite (após 18h)</option>
+                    </select>
+                    <div class="form-text">Quando prefere que entremos em contato?</div>
+                </div>
+            </div>
+        
+            <!-- Message -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <label for="idMensagem" class="form-label">Mensagem</label>
+                    <textarea class="form-control" id="idMensagem" name="mensagem" 
+                              rows="5" placeholder="Escreva sua mensagem aqui..." maxlength="1024" required></textarea>
+                    <div class="form-text">Máximo de 1024 caracteres</div>
+                    <div class="text-end">
+                        <small class="text-muted"><span id="charCount">0</span>/1024</small>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Form Buttons -->
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <button type="reset" class="btn btn-outline-secondary px-4 me-3">
+                        <i class="bi bi-eraser me-2"></i> Limpar
+                    </button>
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="bi bi-send me-2"></i> Enviar Mensagem
+                    </button>
+                </div>
+            </div>
+        </form>
+        
+
+    </section>
+    {% endblock %}

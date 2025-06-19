@@ -81,8 +81,8 @@
             <label for="idFornecedor" class="form-label">Informe o fornecedor</label>
             <select class="form-select" id="idFornecedor" name="fornecedores_codigo" required>
                 <option value="0">Selecione...</option>
-                {% for produtos in produtos %}
-                <option value="{{ produtos.fornecedores_codigo }}">{{ produtos.fornecedores_codigo.nome }}</option>
+                {% for fornecedores in fornecedores %}
+                    <option value="{{ fornecedores.codigo }}">{{ fornecedores.nome }}</option>
                 {% endfor %}
             </select>
         </div>
