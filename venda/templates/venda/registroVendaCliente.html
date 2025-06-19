@@ -11,8 +11,8 @@
             <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
                 <div class="navbar-nav">
                     <a href="/" class="nav-link">Início</a>
-                    <a href="{% url 'produtos:cadastro' %}" class="nav-link">Cadastro</a>
-                    <a href="{% url 'produtos:listar' %}" class="nav-link">Listar</a>
+                    <a href="{% url 'venda:cadastro' %}" class="nav-link">Cadastro</a>
+                    <a href="{% url 'venda:listar' %}" class="nav-link">Listar</a>
                 </div>
             </div>
         </nav>
@@ -36,92 +36,98 @@
     <!-- formulario HTML -->
     <section class="hero">
         <form name="frmCadastrar" action="{% url 'venda:cadastrar' %}" method="post" class="my-label-color-purple">
-            {% csrf_token %}
-            
-            <!-- Product Name (Full Width) -->
-            <div class="row mb-4">
-                <div class="col-md-6 mb-3 mb-md-0">
-                    <label for="idDataVenda" class="form-label">Data da Venda</label>
-                    <input class="form-control" type="date" id="idDataVenda" name="dataVenda" required>
-                    <div class="form-text">Informe quando a venda foi feita</div>
-                </div>
-        
-            <!-- Price Fields (Equal Columns) -->
-            <div class="row mb-4">
-                <div class="col-md-6 mb-3 mb-md-0">
-                    <label for="idValorVenda" class="form-label">Total da venda</label>
-                    <div class="input-group">
-                        <span class="input-group-text">R$</span>
-                        <input class="form-control" type="number" step="0.01" min="0" id="idValorVenda" name="valorVenda" 
-                               placeholder="0,00" required>
-                    </div>
-                    <div class="form-text">Custo de aquisição do produto</div>
-                </div>
-                <div class="col-md-6">
-                    <label for="idPrecoVenda" class="form-label">Preço de venda</label>
-                    <div class="input-group">
-                        <span class="input-group-text">R$</span>
-                        <input class="form-control" type="number" step="0.01" min="0" id="idPrecoVenda" name="precoVenda" 
-                               placeholder="0,00" required>
-                    </div>
-                    <div class="form-text">Preço para o consumidor final</div>
-                </div>
+    {% csrf_token %}
+    
+    <!-- Client Selection -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="idClienteCpf" class="form-label">Cliente</label>
+            <select class="form-select" id="idClienteCpf" name="clienteCpf" required>
+                <option value="" selected disabled>Selecione o cliente</option>
+                {% for cliente in clientes %}
+                    <option value="{{ cliente.cpf }}">{{ cliente.nome }} ({{ cliente.cpf }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="idDataVenda" class="form-label">Data da Venda</label>
+            <input class="form-control" type="date" id="idDataVenda" name="dataVenda" required>
+        </div>
+    </div>
+
+    <!-- Product Selection -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="idProdutoCodigo" class="form-label">Produto</label>
+            <select class="form-select" id="idProdutoCodigo" name="produtoCodigo" required>
+                <option value="" selected disabled>Selecione o produto</option>
+                {% for produto in produtos %}
+                    <option value="{{ produto.codigo }}" data-preco="{{ produto.precoVenda }}">
+                        {{ produto.nome }} - R$ {{ produto.precoVenda }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="idQuantidade" class="form-label">Quantidade</label>
+            <input class="form-control" type="number" min="1" id="idQuantidade" name="quantidade" required>
+        </div>
+        <div class="col-md-3">
+            <label for="idPrecoVenda" class="form-label">Preço Unitário</label>
+            <input class="form-control" type="number" step="0.01" min="0" id="idPrecoVenda" name="precoVenda" readonly required>
+        </div>
+    </div>
+
+    <!-- Total Calculation -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="idValorVenda" class="form-label">Total da Venda</label>
+            <div class="input-group">
+                <span class="input-group-text">R$</span>
+                <input class="form-control" type="number" step="0.01" min="0" id="idValorVenda" name="valorVenda" readonly required>
             </div>
-        
-            <!-- Color and Supplier (Equal Columns) -->
-            <div class="row mb-4">
-                <div class="col-md-4 mb-3 mb-md-0">
-                    <label for="idCor" class="form-label">Cor principal</label>
-                    <select class="form-select" id="idCor" name="cor" required>
-                        <option value="" selected disabled>Selecione a cor</option>
-                        <option value="azul">Azul</option>
-                        <option value="vermelho">Vermelho</option>
-                        <option value="verde">Verde</option>
-                        <option value="amarelo">Amarelo</option>
-                        <option value="branco">Branco</option>
-                        <option value="preto">Preto</option>
-                        <option value="marrom">Marrom</option>
-                    </select>
-                </div>
-                <div class="col-md-8">
-                    <label for="idFornecedor" class="form-label">Fornecedor</label>
-                    <select class="form-select" id="idFornecedor" name="fornecedoresCodigo" required>
-                        <option value="" selected disabled>Selecione o fornecedor</option>
-                        {% for fornecedores in fornecedores %}
-                            <option value="{{ fornecedores.codigo }}">{{ fornecedores.nome }}</option>
-                        {% endfor %}
-                    </select>
-                    <div class="form-text">Empresa que fornece este produto</div>
-                </div>
-            </div>
-        
-            <!-- Manufacturing Date and Image (Equal Columns) -->
-            <div class="row mb-4">
-                
-                <div class="col-md-6">
-                    <label for="idImagem" class="form-label">Imagem do produto</label>
-                    <div class="input-group">
-                        <span class="input-group-text">img/</span>
-                        <input class="form-control" type="text" id="idImagem" name="imagem" 
-                               placeholder="nome-da-imagem" maxlength="25" required>
-                        <span class="input-group-text">.jpg</span>
-                    </div>
-                    <div class="form-text">Nome do arquivo de imagem (sem extensão)</div>
-                </div>
-            </div>
-        
-            <!-- Form Buttons (Centered) -->
-            <div class="row mt-5">
-                <div class="col-12 text-center">
-                    <button type="reset" class="btn btn-outline-secondary px-4 me-3">
-                        <i class="bi bi-eraser me-2"></i> Limpar
-                    </button>
-                    <button type="submit" class="btn btn-primary px-4">
-                        <i class="bi bi-save me-2"></i> Cadastrar
-                    </button>
-                </div>
-            </div>
-        </form>
+        </div>
+    </div>
+
+    <!-- Form Buttons -->
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <button type="reset" class="btn btn-outline-secondary px-4 me-3">
+                <i class="bi bi-eraser me-2"></i> Limpar
+            </button>
+            <button type="submit" class="btn btn-primary px-4">
+                <i class="bi bi-save me-2"></i> Cadastrar
+            </button>
+        </div>
+    </div>
+</form>
     </section>
 
+        {% endblock %}
+
+        {% block javascript_complementar %}
+        <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const produtoSelect = document.getElementById('idProdutoCodigo');
+    const quantidadeInput = document.getElementById('idQuantidade');
+    const precoInput = document.getElementById('idPrecoVenda');
+    const totalInput = document.getElementById('idValorVenda');
+    
+    // Update price when product changes
+    produtoSelect.addEventListener('change', function() {
+        const selectedOption = this.options[this.selectedIndex];
+        precoInput.value = selectedOption.dataset.preco;
+        calculateTotal();
+    });
+    
+    // Update total when quantity changes
+    quantidadeInput.addEventListener('input', calculateTotal);
+    
+    function calculateTotal() {
+        if (precoInput.value && quantidadeInput.value) {
+            totalInput.value = (parseFloat(precoInput.value) * parseInt(quantidadeInput.value)).toFixed(2);
+        }
+    }
+});
+</script>
         {% endblock %}

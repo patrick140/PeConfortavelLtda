@@ -3,8 +3,8 @@ from django.utils import timezone
 # Create your models here.
 
 class Clientes(models.Model):
-    cpf = models.CharField(primary_key=True,max_length=11, 
-                           help_text='Cpf do cliente')
+    cpf = models.CharField(primary_key=True, max_length=14, 
+                         help_text='CPF do cliente', unique=True)
     nome = models.CharField(max_length=70, 
                             help_text='Nome do cliente')
     endereco = models.CharField(max_length=100,
