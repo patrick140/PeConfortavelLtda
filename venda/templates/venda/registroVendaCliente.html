@@ -59,7 +59,7 @@
     <div class="row mb-4">
         <div class="col-md-6">
             <label for="idProdutoCodigo" class="form-label">Produto</label>
-            <select class="form-select" id="idBSelProdutoCodigo" name="produtoCodigo" required>
+            <select class="form-select" id="idProdutoCodigo" name="produtoCodigo" required>
                 <option value="" selected disabled>Selecione o produto</option>
                 {% for produto in produtos %}
                     <option value="{{ produto.codigo }}" data-preco="{{ produto.precoVenda }}">
