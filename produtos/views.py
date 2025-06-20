@@ -40,7 +40,7 @@ def excluir(request, codigo):
     return redirect('produtos:listar')
 
 def carregar_produtos(request, codigo):
-    # obter titulo a atualizar baseado no codigo informado
+    
     produtos = Produtos.objects.get(pk=codigo)
     fornecedores = Fornecedores.objects.all()
     contexto = {
@@ -68,7 +68,7 @@ def atualizar(request):
 
             produtos.save()
 
-        # imprimir no console mensagens de erro na validação do formulario
+        
         else:
             print(form.errors)
     return redirect('produtos:listar')

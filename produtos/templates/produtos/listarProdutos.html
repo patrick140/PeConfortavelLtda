@@ -42,7 +42,7 @@
     <section class="hero">
     <div class="table-responsive">
 
-        <!-- classes para tabela (Bootstrap) , tabela sem borda, conteudo alinhado ao centro, ... , width: auto -->
+       
         <table class="table
                     table-borderless
                     text-center
@@ -53,11 +53,11 @@
                     my-table-th
                     w-100">
 
-            <!-- cabecalho -->
+            
             <thead>
-                <!-- linhas -->
+                
                 <tr>
-                    <!-- colunas cabecalho -->
+                    
                     <th>Codigo</th>
                     <th>Nome</th>
                     <th>Preço de compra</th>
@@ -68,7 +68,7 @@
                 </tr>
             </thead>
 
-            <!-- linhas -->
+            
             {% for produtos in produtos %}
                 <tr>
                     <td> {{ produtos.codigo }} </td>
@@ -130,7 +130,7 @@
 
 {% block javascript_complementar %}
 
-<!-- Prepara o modal com os dados da imagem do Titulo a ser excluido -->
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('#modalExcluirProdutos').on('show.bs.modal', function(event) {

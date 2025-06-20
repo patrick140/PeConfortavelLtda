@@ -43,22 +43,22 @@ def cadastrar(request):
 
 def clean_cpf(self):
         cpf = self.cleaned_data['cpf']
-        # Remove formatting for database check
+        
         cpf_numbers = cpf.replace('.', '').replace('-', '')
         
-        # Validate length (should be 14 numbers)
+        
         if len(cpf_numbers) != 14:
             raise forms.ValidationError("CPF deve conter 14 dígitos numéricos.")
             
-        # Check if already exists (using cleaned numbers)
+        
         if Clientes.objects.filter(cpf=cpf).exists():
             raise forms.ValidationError("Este CPF já está cadastrado.")
             
-        return cpf  # Return the formatted version
+        return cpf  
 
 def verificar_cpf(request):
     cpf = request.GET.get('cpf', '')
-    # We'll store and check with formatting, so no need to clean here
+   
     exists = Clientes.objects.filter(cpf=cpf).exists()
     return JsonResponse({'exists': exists})
 
@@ -72,7 +72,7 @@ def excluir(request, cpf):
     return redirect('clientes:listar')
 
 def carregar_clientes(request, cpf):
-    # obter titulo a atualizar baseado no codigo informado
+    
     clientes = Clientes.objects.get(pk=cpf)
     contexto = {
         'clientes': clientes,
@@ -101,7 +101,7 @@ def atualizar(request):
 
             clientes.save()
 
-        # imprimir no console mensagens de erro na validação do formulario
+        
         else:
             print(form.errors)
     return redirect('clientes:listar')

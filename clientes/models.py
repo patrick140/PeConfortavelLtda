@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-# Create your models here.
+
 
 class Clientes(models.Model):
     cpf = models.CharField(primary_key=True, max_length=14, 

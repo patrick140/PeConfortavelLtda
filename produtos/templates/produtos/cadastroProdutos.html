@@ -33,12 +33,12 @@
         </div>
     </div>
 
-    <!-- formulario HTML -->
+    
     <section class="hero">
         <form name="frmCadastrar" action="{% url 'produtos:cadastrar' %}" method="post" class="my-label-color-purple">
             {% csrf_token %}
             
-            <!-- Product Name (Full Width) -->
+            
             <div class="row mb-4">
                 <div class="col-12">
                     <label for="idTxtNomeProdutos" class="form-label">Nome do produto</label>
@@ -47,7 +47,7 @@
                 </div>
             </div>
         
-            <!-- Price Fields (Equal Columns) -->
+            
             <div class="row mb-4">
                 <div class="col-md-6 mb-3 mb-md-0">
                     <label for="idPrecoCompra" class="form-label">Preço de compra</label>
@@ -69,7 +69,7 @@
                 </div>
             </div>
         
-            <!-- Color and Supplier (Equal Columns) -->
+            
             <div class="row mb-4">
                 <div class="col-md-4 mb-3 mb-md-0">
                     <label for="idCor" class="form-label">Cor principal</label>
@@ -96,7 +96,7 @@
                 </div>
             </div>
         
-            <!-- Manufacturing Date and Image (Equal Columns) -->
+            
             <div class="row mb-4">
                 <div class="col-md-6 mb-3 mb-md-0">
                     <label for="idDataFabricacao" class="form-label">Data de fabricação</label>
@@ -115,7 +115,7 @@
                 </div>
             </div>
         
-            <!-- Form Buttons (Centered) -->
+            
             <div class="row mt-5">
                 <div class="col-12 text-center">
                     <button type="reset" class="btn btn-outline-secondary px-4 me-3">

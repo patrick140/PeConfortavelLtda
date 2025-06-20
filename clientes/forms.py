@@ -1,9 +1,9 @@
 from django import forms
 
-#classe formulario inclusao
+
 class ClientesForm(forms.Form):
     cpf = forms.CharField(max_length=14, required=True, help_text='CPF do cliente')
-    # ... other fields remain the same ...
+   
     nome = forms.CharField(max_length=70,
                            required=True, 
                             help_text='Nome do cliente')

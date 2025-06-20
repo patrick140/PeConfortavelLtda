@@ -20,7 +20,7 @@
 
             
 {% block corpo %}
-        <!-- main -->
+        
 <main class="container m-2 w-75 mx-auto my-font-family">
 
     <div class="hero">
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <!-- formulario HTML -->
+    
     <section class="hero">
     <form name="frmClientesAtualizarForm" action="{% url 'clientes:atualizar_clientes' %}" method="post" class="my-label-color-purple">
         {% csrf_token %}
@@ -45,7 +45,7 @@
     <div class="row mb-3">
         <div class="col-md-6">
             <label for="idTxtCpf" class="form-label">CPF</label>
-            <input type="hidden" name="cpf" value="{{ clientes.cpf }}">  <!-- Name matches form field -->
+            <input type="hidden" name="cpf" value="{{ clientes.cpf }}">  
             <input class="form-control" type="text" id="idTxtCpf" 
                     value="{{ clientes.cpf }}" maxlength="14" readonly>
         </div>

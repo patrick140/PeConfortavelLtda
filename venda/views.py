@@ -25,13 +25,13 @@ def cadastro(request):
 
 def cadastrar(request):
     if request.method == 'POST':
-        # Create Venda first
+        
         venda_form = VendaForm(request.POST)
         item_form = item_vendaForm(request.POST)
         
         if venda_form.is_valid() and item_form.is_valid():
             try:
-                # Save Venda
+                
                 venda = Venda(
                     dataVenda=venda_form.cleaned_data['dataVenda'],
                     valorVenda=venda_form.cleaned_data['valorVenda'],
@@ -39,7 +39,7 @@ def cadastrar(request):
                 )
                 venda.save()
                 
-                # Save item_venda with the created Venda
+                
                 item_venda.objects.create(
                     vendaNumero=venda,
                     produtoCodigo=item_form.cleaned_data['produtoCodigo'],
@@ -50,14 +50,14 @@ def cadastrar(request):
                 return redirect('venda:sucesso')
                 
             except Exception as e:
-                # Handle any errors during save
+                
                 return render(request, 'venda/registroVendaCliente.html', {
                     'error': str(e),
                     'produtos': Produtos.objects.all(),
                     'clientes': Clientes.objects.all()
                 })
     
-    # If GET or invalid form
+    
     return render(request, 'venda/registroVendaCliente.html', {
         'produtos': Produtos.objects.all(),
         'clientes': Clientes.objects.all()

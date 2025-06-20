@@ -20,7 +20,7 @@
 
             
 {% block corpo %}
-        <!-- main -->
+        
 <main class="container m-2 w-75 mx-auto my-font-family">
 
     <div class="hero">
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <!-- formulario HTML -->
+    
     <section class="hero">
     <form name="FornecedoresAtualizarForm" action="{% url 'fornecedores:atualizar_fornecedores' %}" method="post" class="my-label-color-purple">
         {% csrf_token %}

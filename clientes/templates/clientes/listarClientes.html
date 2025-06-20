@@ -42,7 +42,7 @@
     <section class="hero">
     <div class="table-responsive">
 
-        <!-- classes para tabela (Bootstrap) , tabela sem borda, conteudo alinhado ao centro, ... , width: auto -->
+        
         <table class="table
                     table-borderless
                     text-center
@@ -53,11 +53,11 @@
                     my-table-th
                     w-100">
 
-            <!-- cabecalho -->
+            
             <thead>
-                <!-- linhas -->
+                
                 <tr>
-                    <!-- colunas cabecalho -->
+                    
                     <th>cpf</th>
                     <th>Nome</th>
                     <th>endereço</th>
@@ -70,7 +70,7 @@
                 </tr>
             </thead>
 
-            <!-- linhas -->
+            
             {% for clientes in clientes %}
                 <tr>
                     <td> {{ clientes.cpf }} </td>
@@ -134,7 +134,7 @@
 
 {% block javascript_complementar %}
 
-<!-- Prepara o modal com os dados da imagem do Titulo a ser excluido -->
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('#modalExcluirClientes').on('show.bs.modal', function(event) {
